@@ -1,10 +1,13 @@
+import { LockIcon } from '@chakra-ui/icons';
 import {
   Avatar,
   Box,
   Button,
   Center,
+  Icon,
   Input,
   InputGroup,
+  InputLeftElement,
   InputRightElement,
   Text,
 } from '@chakra-ui/react';
@@ -37,15 +40,25 @@ const Form = ({ onLogin }) => {
           <Box w={'65%'} maxW={'1000px'} minHeight="240px" bg="#fdfdfd">
             <Center>
               <Box w={'90%'}>
-                <Input
-                  value={emailValue}
-                  onChange={handleEmailChange}
-                  mt="15px"
-                  required
-                  type="email"
-                  size="lg"
-                  placeholder="email address"
-                />
+                <InputGroup mt="15px" size="lg">
+                  <Input
+                    value={emailValue}
+                    onChange={handleEmailChange}
+                    required
+                    type="email"
+                    placeholder="email address"
+                  />
+                  <InputLeftElement>
+                    <Icon viewBox="0 0 64 64" color="red.500">
+                      <path
+                        fill="#ced5dd"
+                        d="M41.6,31c4.5-3.1,7.4-8.2,7.4-14c0-9.4-7.6-17-17-17S15,7.6,15,17c0,5.8,2.9,10.9,7.4,14C13.5,33.8,7,42.2,7,52v12h50V52
+	C57,42.2,50.5,33.8,41.6,31z M19,17c0-7.2,5.8-13,13-13s13,5.8,13,13s-5.8,13-13,13S19,24.2,19,17z M53,60H11v-8c0-9.9,8.1-18,18-18
+	h6c9.9,0,18,8.1,18,18V60z"
+                      />
+                    </Icon>
+                  </InputLeftElement>
+                </InputGroup>
 
                 <InputGroup mt="15px" size="lg">
                   <Input
@@ -54,7 +67,11 @@ const Form = ({ onLogin }) => {
                     required
                     type={show ? 'text' : 'password'}
                     placeholder="Password"
-                  />
+                  ></Input>
+                  <InputLeftElement>
+                    <LockIcon color={'#ced5dd'} />
+                  </InputLeftElement>
+
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleClick}>
                       {show ? 'Hide' : 'Show'}

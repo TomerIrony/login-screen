@@ -26,13 +26,13 @@ function App() {
   return (
     <div className="root">
       <Routes>
+        <Route path="/" element={<Form onLogin={onLogin} />} />
         <Route
           path="/main"
           element={<ProtectedRoute path="/" loggedIn={loggedIn} />}
         >
           <Route path="/main" element={<Main />} />
         </Route>
-        <Route path="/" element={<Form onLogin={onLogin} />} />
       </Routes>
     </div>
   );
