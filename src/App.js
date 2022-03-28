@@ -7,7 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Main from './components/Main';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   let navigate = useNavigate();
 
   const onLogin = (e, email, password) => {
@@ -18,7 +18,7 @@ function App() {
         setLoggedIn(true);
         navigate(`/main`);
       })
-      .catch((err) => {
+      .catch(() => {
         window.alert('Email or Password is incorrect');
       });
   };
