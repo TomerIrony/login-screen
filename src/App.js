@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import api from './utils/Api';
+import Form from './components/Form';
+import { useState } from 'react';
+import { useNavigate, Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import Main from './components/Main';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(true);
+  let navigate = useNavigate();
+
+  const onLogin = (e, email, password) => {
+    e.preventDefault();
+    api
+      .login(email, password)
+      .then(() => {
+        setLoggedIn(true);
+        navigate(`/main`);
+      })
+      .catch((err) => {
+        window.alert('Email or Password is incorrect');
+      });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="root">
+      <Routes>
+        <Route
+          path="/main"
+          element={<ProtectedRoute path="/" loggedIn={loggedIn} />}
         >
-          Learn React
-        </a>
-      </header>
+          <Route path="/main" element={<Main />} />
+        </Route>
+        <Route path="/" element={<Form onLogin={onLogin} />} />
+      </Routes>
     </div>
   );
 }

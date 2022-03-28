@@ -1,0 +1,6 @@
+.form__sign {
+  color: #8daaac;
+}
+.form__sign:hover {
+  cursor: pointer;
+}

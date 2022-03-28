@@ -1,0 +1,7 @@
+.form__reset:hover {
+  cursor: pointer;
+}
+
+.form__reset {
+  color: #b7b9bf;
+}
